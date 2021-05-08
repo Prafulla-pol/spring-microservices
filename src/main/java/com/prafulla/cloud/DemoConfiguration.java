@@ -3,8 +3,11 @@ package com.prafulla.cloud;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.web.servlet.DispatcherServletAutoConfiguration;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.DispatcherServlet;
 
 /**
  * I am declaring myself as a configuration. As i am a component I will get auto picked
@@ -33,4 +36,18 @@ public class DemoConfiguration {
 		return Arrays.asList("Bengal", "Lion");
 	}
 	
+	// Override the defaults in spring boot
+	
+	//@Bean
+	public DispatcherServlet dispatcher() {
+		return new DispatcherServlet();
+	}
+	
+	//@Bean
+	public ServletRegistrationBean servletRegistration() {
+		ServletRegistrationBean servletRegistration = 
+				new ServletRegistrationBean(dispatcher(), "/servlet/*");
+		servletRegistration.setName(DispatcherServletAutoConfiguration.DEFAULT_DISPATCHER_SERVLET_BEAN_NAME);
+		return servletRegistration;
+	}
 }

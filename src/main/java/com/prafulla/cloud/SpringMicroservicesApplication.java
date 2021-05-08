@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Import(DemoConfiguration.class)
 @ImportResource("/simple-context.xml")
 public class SpringMicroservicesApplication {
-
+	
 	@Autowired
 	@Resource(name="circus")
 	private List<String> list;
